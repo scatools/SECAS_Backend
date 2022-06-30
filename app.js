@@ -11,14 +11,35 @@ app.use(express.json());
 app.use(cors());
 app.use(morgan('tiny'));
 
-app.post('/data', async function(req, res, next) {
+app.post('/data/current', async function(req, res, next) {
 	try {
 		// Set 4326 as the SRID for both geometries to avoid operations on mixed projections
 		const results = await db.query(
-			`SELECT gid,site,species,fire,protected,carbon,forest,farming,landscape,resilience,blueprint,
-			ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geometry 
-			FROM hex_mse 
-			WHERE ST_Intersects(ST_SetSRID(ST_GeomFromGeoJSON($1), 4326), ST_SetSRID(hex_mse.geom, 4326))`,
+			`SELECT gid,site,species,fire,protected,carbon,forest,farming,landscape,resilience,blueprint,lightblue,darkblue
+			ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geometry
+			FROM hex_mse_current
+			WHERE ST_Intersects(ST_SetSRID(ST_GeomFromGeoJSON($1), 4326), ST_SetSRID(hex_mse_current.geom, 4326))`,
+			[req.body.data]
+		);
+
+		return res.json({
+			length: results.rows.length,
+			data: results.rows
+		});
+	} catch (e) {
+		next(e);
+		console.error(e); 
+	}
+});
+
+app.post('/data/future', async function(req, res, next) {
+	try {
+		// Set 4326 as the SRID for both geometries to avoid operations on mixed projections
+		const results = await db.query(
+			`SELECT gid,site,species,fire,protected,carbon,forest,farming,landscape,resilience,blueprint,lightblue,darkblue
+			ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geometry
+			FROM hex_mse_future
+			WHERE ST_Intersects(ST_SetSRID(ST_GeomFromGeoJSON($1), 4326), ST_SetSRID(hex_mse_future.geom, 4326))`,
 			[req.body.data]
 		);
 
