@@ -31,6 +31,120 @@ app.post('/data/future', async function(req, res, next) {
 	}
 });
 
+app.post('/data/current/aesfh', async function(req, res, next) {
+	try {
+		const results = await db.query(
+			`SELECT gid,aesfh_me,aesfh_sd,aesfh_mn,aesfh_mx,aesfh_mi,aesfh_0_25,aesfh_0_5,aesfh_1,ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geometry
+			FROM aesfh
+			WHERE gid=ANY($1)`,
+			[req.body.data]
+		);
+
+		return res.json({
+			length: results.rows.length,
+			data: results.rows
+		});
+	} catch (e) {
+		next(e);
+		console.error(e); 
+	}
+});
+
+app.post('/data/current/amifh', async function(req, res, next) {
+	try {
+		const results = await db.query(
+			`SELECT gid,amifh_me,amifh_sd,amifh_mn,amifh_mx,amifh_mi,amifh_0_25,amifh_0_5,amifh_1,ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geometry
+			FROM amifh
+			WHERE gid=ANY($1)`,
+			[req.body.data]
+		);
+
+		return res.json({
+			length: results.rows.length,
+			data: results.rows
+		});
+	} catch (e) {
+		next(e);
+		console.error(e); 
+	}
+});
+
+app.post('/data/current/amrpa', async function(req, res, next) {
+	try {
+		const results = await db.query(
+			`SELECT gid,amrpa_me,amrpa_sd,amrpa_mn,amrpa_mx,amrpa_mi,amrpa_0,amrpa_1,ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geometry
+			FROM amrpa
+			WHERE gid=ANY($1)`,
+			[req.body.data]
+		);
+
+		return res.json({
+			length: results.rows.length,
+			data: results.rows
+		});
+	} catch (e) {
+		next(e);
+		console.error(e); 
+	}
+});
+
+app.post('/data/current/cshcd', async function(req, res, next) {
+	try {
+		const results = await db.query(
+			`SELECT gid,cshcd_me,cshcd_sd,cshcd_mn,cshcd_mx,cshcd_mi,cshcd_0,cshcd_0_25,cshcd_0_5,cshcd_1,ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geometry
+			FROM cshcd
+			WHERE gid=ANY($1)`,
+			[req.body.data]
+		);
+
+		return res.json({
+			length: results.rows.length,
+			data: results.rows
+		});
+	} catch (e) {
+		next(e);
+		console.error(e); 
+	}
+});
+
+app.post('/data/current/egcpb', async function(req, res, next) {
+	try {
+		const results = await db.query(
+			`SELECT gid,egcpb_me,egcpb_sd,egcpb_mn,egcpb_mx,egcpb_mi,egcpb_0_2,egcpb_0_4,egcpb_0_6,egcpb_0_8,egcpb_1,ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geometry
+			FROM egcpb
+			WHERE gid=ANY($1)`,
+			[req.body.data]
+		);
+
+		return res.json({
+			length: results.rows.length,
+			data: results.rows
+		});
+	} catch (e) {
+		next(e);
+		console.error(e); 
+	}
+});
+
+app.post('/data/current/eqapk', async function(req, res, next) {
+	try {
+		const results = await db.query(
+			`SELECT gid,eqapk_me,eqapk_sd,eqapk_mn,eqapk_mx,eqapk_mi,eqapk_0_5,eqapk_0_75,eqapk_1,ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geometry
+			FROM eqapk
+			WHERE gid=ANY($1)`,
+			[req.body.data]
+		);
+
+		return res.json({
+			length: results.rows.length,
+			data: results.rows
+		});
+	} catch (e) {
+		next(e);
+		console.error(e); 
+	}
+});
+
 app.post('/data/current/estcc', async function(req, res, next) {
 	try {
 		const results = await db.query(
@@ -126,6 +240,25 @@ app.post('/data/current/grntr', async function(req, res, next) {
 	}
 });
 
+app.post('/data/current/grsav', async function(req, res, next) {
+	try {
+		const results = await db.query(
+			`SELECT gid,grsav_me,grsav_sd,grsav_mn,grsav_mx,grsav_mi,grsav_0,grsav_0_15,grsav_0_3,grsav_0_45,grsav_0.6,grsav_0.75,grsav_0.9,grsav_1,ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geometry
+			FROM grsav
+			WHERE gid=ANY($1)`,
+			[req.body.data]
+		);
+
+		return res.json({
+			length: results.rows.length,
+			data: results.rows
+		});
+	} catch (e) {
+		next(e);
+		console.error(e); 
+	}
+});
+
 app.post('/data/current/ihabc', async function(req, res, next) {
 	try {
 		const results = await db.query(
@@ -183,6 +316,25 @@ app.post('/data/current/isegr', async function(req, res, next) {
 	}
 });
 
+app.post('/data/current/lscdn', async function(req, res, next) {
+	try {
+		const results = await db.query(
+			`SELECT gid,lscdn_me,lscdn_sd,lscdn_mn,lscdn_mx,lscdn_mi,lscdn_0_1,lscdn_0_2,lscdn_0_4,lscdn_0_6,lscdn_0_8,lscdn_1,ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geometry
+			FROM lscdn
+			WHERE gid=ANY($1)`,
+			[req.body.data]
+		);
+
+		return res.json({
+			length: results.rows.length,
+			data: results.rows
+		});
+	} catch (e) {
+		next(e);
+		console.error(e); 
+	}
+});
+
 app.post('/data/current/mavbp', async function(req, res, next) {
 	try {
 		const results = await db.query(
@@ -224,7 +376,7 @@ app.post('/data/current/mavbr', async function(req, res, next) {
 app.post('/data/current/netcx', async function(req, res, next) {
 	try {
 		const results = await db.query(
-			`SELECT gid,netcx_me,netcx_sd,netcx_mn,netcx_mx,netcx_mi,netcx_0,netcx_0_25,netcx_0_5,netcx_0_75,netcx_1,ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geometry
+			`SELECT gid,netcx_me,netcx_sd,netcx_mn,netcx_mx,netcx_mi,netcx_0_25,netcx_0_5,netcx_0_75,netcx_1,ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geometry
 			FROM netcx
 			WHERE gid=ANY($1)`,
 			[req.body.data]
@@ -243,7 +395,7 @@ app.post('/data/current/netcx', async function(req, res, next) {
 app.post('/data/current/nlcfp', async function(req, res, next) {
 	try {
 		const results = await db.query(
-			`SELECT gid,nlcfp_me,nlcfp_sd,nlcfp_mn,nlcfp_mx,nlcfp_mi,nlcfp_0,nlcfp_0_25,nlcfp_0_5,nlcfp_0_75,nlcfp_1,ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geometry
+			`SELECT gid,nlcfp_me,nlcfp_sd,nlcfp_mn,nlcfp_mx,nlcfp_mi,nlcfp_0_25,nlcfp_0_5,nlcfp_0_75,nlcfp_1,ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geometry
 			FROM nlcfp
 			WHERE gid=ANY($1)`,
 			[req.body.data]
@@ -378,6 +530,44 @@ app.post('/data/current/saluh', async function(req, res, next) {
 		const results = await db.query(
 			`SELECT gid,saluh_me,saluh_sd,saluh_mn,saluh_mx,saluh_mi,saluh_0,saluh_0_5,saluh_1,ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geometry
 			FROM saluh
+			WHERE gid=ANY($1)`,
+			[req.body.data]
+		);
+
+		return res.json({
+			length: results.rows.length,
+			data: results.rows
+		});
+	} catch (e) {
+		next(e);
+		console.error(e); 
+	}
+});
+
+app.post('/data/current/samfs', async function(req, res, next) {
+	try {
+		const results = await db.query(
+			`SELECT gid,samfs_me,samfs_sd,samfs_mn,samfs_mx,samfs_mi,samfs_0,samfs_1,ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geometry
+			FROM samfs
+			WHERE gid=ANY($1)`,
+			[req.body.data]
+		);
+
+		return res.json({
+			length: results.rows.length,
+			data: results.rows
+		});
+	} catch (e) {
+		next(e);
+		console.error(e); 
+	}
+});
+
+app.post('/data/current/stcwi', async function(req, res, next) {
+	try {
+		const results = await db.query(
+			`SELECT gid,stcwi_me,stcwi_sd,stcwi_mn,stcwi_mx,stcwi_mi,stcwi_0,stcwi_0_5,stcwi_1,ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geometry
+			FROM stcwi
 			WHERE gid=ANY($1)`,
 			[req.body.data]
 		);
