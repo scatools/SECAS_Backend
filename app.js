@@ -31,11 +31,11 @@ app.post('/data/future', async function(req, res, next) {
 	}
 });
 
-app.post('/data/current/aesfh', async function(req, res, next) {
+app.post('/data/current/aefih', async function(req, res, next) {
 	try {
 		const results = await db.query(
-			`SELECT gid,aesfh_me,aesfh_sd,aesfh_mn,aesfh_mx,aesfh_mi,aesfh_0_25,aesfh_0_5,aesfh_1,ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geometry
-			FROM aesfh
+			`SELECT gid,aefih_me,aefih_sd,aefih_mn,aefih_mx,aefih_mi,aefih_0_25,aefih_0_5,aefih_1,ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geometry
+			FROM aefih
 			WHERE gid=ANY($1)`,
 			[req.body.data]
 		);
@@ -50,11 +50,11 @@ app.post('/data/current/aesfh', async function(req, res, next) {
 	}
 });
 
-app.post('/data/current/amifh', async function(req, res, next) {
+app.post('/data/current/amfih', async function(req, res, next) {
 	try {
 		const results = await db.query(
-			`SELECT gid,amifh_me,amifh_sd,amifh_mn,amifh_mx,amifh_mi,amifh_0_25,amifh_0_5,amifh_1,ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geometry
-			FROM amifh
+			`SELECT gid,amfih_me,amfih_sd,amfih_mn,amfih_mx,amfih_mi,amfih_0_25,amfih_0_5,amfih_1,ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geometry
+			FROM amfih
 			WHERE gid=ANY($1)`,
 			[req.body.data]
 		);
@@ -88,11 +88,11 @@ app.post('/data/current/amrpa', async function(req, res, next) {
 	}
 });
 
-app.post('/data/current/cshcd', async function(req, res, next) {
+app.post('/data/current/cshcn', async function(req, res, next) {
 	try {
 		const results = await db.query(
-			`SELECT gid,cshcd_me,cshcd_sd,cshcd_mn,cshcd_mx,cshcd_mi,cshcd_0,cshcd_0_25,cshcd_0_5,cshcd_1,ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geometry
-			FROM cshcd
+			`SELECT gid,cshcn_me,cshcn_sd,cshcn_mn,cshcn_mx,cshcn_mi,cshcn_0,cshcn_0_25,cshcn_0_5,cshcn_1,ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geometry
+			FROM cshcn
 			WHERE gid=ANY($1)`,
 			[req.body.data]
 		);
@@ -107,11 +107,11 @@ app.post('/data/current/cshcd', async function(req, res, next) {
 	}
 });
 
-app.post('/data/current/egcpb', async function(req, res, next) {
+app.post('/data/current/ecopb', async function(req, res, next) {
 	try {
 		const results = await db.query(
-			`SELECT gid,egcpb_me,egcpb_sd,egcpb_mn,egcpb_mx,egcpb_mi,egcpb_0_2,egcpb_0_4,egcpb_0_6,egcpb_0_8,egcpb_1,ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geometry
-			FROM egcpb
+			`SELECT gid,ecopb_me,ecopb_sd,ecopb_mn,ecopb_mx,ecopb_mi,ecopb_0_2,ecopb_0_4,ecopb_0_6,ecopb_0_8,ecopb_1,ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geometry
+			FROM ecopb
 			WHERE gid=ANY($1)`,
 			[req.body.data]
 		);
