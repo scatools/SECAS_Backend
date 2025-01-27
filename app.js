@@ -585,7 +585,7 @@ app.post('/data/current/stcwi', async function(req, res, next) {
 app.post('/data/current/urbps', async function(req, res, next) {
 	try {
 		const results = await db.query(
-			`SELECT gid,urbps_me,urbps_sd,urbps_mn,urbps_mx,urbps_mi,urbps_0_25,urbps_0_5,urbps_0_75,urbps_1,ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geometry
+			`SELECT gid,urbps_me,urbps_sd,urbps_mn,urbps_mx,urbps_mi,urbps_0_2,urbps_0_4,urbps_0_6,urbps_0_8,urbps_1,ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geometry
 			FROM urbps
 			WHERE gid=ANY($1)`,
 			[req.body.data]
