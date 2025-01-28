@@ -243,7 +243,7 @@ app.post('/data/current/grntr', async function(req, res, next) {
 app.post('/data/current/grsav', async function(req, res, next) {
 	try {
 		const results = await db.query(
-			`SELECT gid,grsav_me,grsav_sd,grsav_mn,grsav_mx,grsav_mi,grsav_0,grsav_0_15,grsav_0_3,grsav_0_45,grsav_0.6,grsav_0.75,grsav_0.9,grsav_1,ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geometry
+			`SELECT gid,grsav_me,grsav_sd,grsav_mn,grsav_mx,grsav_mi,grsav_0,grsav_0_15,grsav_0_3,grsav_0_45,grsav_0_6,grsav_0_75,grsav_0_9,grsav_1,ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geometry
 			FROM grsav
 			WHERE gid=ANY($1)`,
 			[req.body.data]
