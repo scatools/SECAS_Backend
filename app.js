@@ -563,11 +563,11 @@ app.post('/data/current/samfs', async function(req, res, next) {
 	}
 });
 
-app.post('/data/current/stcwi', async function(req, res, next) {
+app.post('/data/current/scwet', async function(req, res, next) {
 	try {
 		const results = await db.query(
-			`SELECT gid,stcwi_me,stcwi_sd,stcwi_mn,stcwi_mx,stcwi_mi,stcwi_0,stcwi_0_5,stcwi_1,ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geometry
-			FROM stcwi
+			`SELECT gid,scwet_me,scwet_sd,scwet_mn,scwet_mx,scwet_mi,scwet_0,scwet_0_5,scwet_1,ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geometry
+			FROM scwet
 			WHERE gid=ANY($1)`,
 			[req.body.data]
 		);
