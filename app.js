@@ -16,7 +16,7 @@ app.post('/data/blueprint', async function(req, res, next) {
 		const results = await db.query(
 			`SELECT gid,frac_0,frac_1,ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geometry
 			FROM bluep
-			WHERE ST_Intersects(ST_SetSRID(ST_GeomFromGeoJSON($1), 4326), ST_SetSRID(bluep.geom, 4326))`,
+			WHERE gid=ANY($1)`,
 			[req.body.data]
 		);
 
